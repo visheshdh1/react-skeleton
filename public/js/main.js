@@ -19026,7 +19026,8 @@ var List = React.createClass({
     render: function () {
 
         var createItem = function (text) {
-            return React.createElement(ListItem, { text: text, remove: remove });
+
+            return React.createElement(ListItem, { text: text, remove: this.props.remove });
         };
 
         return React.createElement(
@@ -19053,7 +19054,7 @@ var ListItem = React.createClass({
             React.createElement(
                 "a",
                 { href: "#", onClick: () => {
-                        this.props.remove(text);
+                        this.props.remove(this.props.text);
                     } },
                 this.props.text
             )
@@ -19086,12 +19087,15 @@ var ListManager = React.createClass({
         this.setState({ items: currentItems, newItemText: '' });
     },
     handleRemove: function (ritem) {
-        console.log(ritem);
+
         const remainder = this.state.items.filter(critem => {
-            if (critem !== ritem) return critem;
+            if (critem !== ritem) {
+                return critem;
+            }
         });
 
         this.setState({ items: remainder });
+        console.log("inside remove  ----- " + remainder);
     },
     render: function () {
         return React.createElement(
@@ -19112,7 +19116,7 @@ var ListManager = React.createClass({
                     'Add'
                 )
             ),
-            React.createElement(List, { items: this.state.items, remove: this.handleRemove.bind(this) })
+            React.createElement(List, { items: this.state.items, remove: this.handleRemove })
         );
     }
 });

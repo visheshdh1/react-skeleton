@@ -18,12 +18,15 @@ var ListManager = React.createClass({
         this.setState({items: currentItems, newItemText:''});
     },
     handleRemove : function(ritem){
-    console.log(ritem);
+
     const remainder = this.state.items.filter((critem) => {
-      if(critem !== ritem) return critem;
+      if(critem !== ritem){
+        return critem;
+      }
     });
 
     this.setState({items: remainder});
+    console.log("inside remove  ----- "+remainder);
   },
     render: function() {
         return (
@@ -33,7 +36,7 @@ var ListManager = React.createClass({
                     <input onChange={this.onChange} value={this.state.newItemText} />
                     <button>Add</button>
                 </form>
-                <List items={this.state.items} remove={this.handleRemove.bind(this)}/>
+                <List items={this.state.items} remove={this.handleRemove}/>
             </div>
         );
     }

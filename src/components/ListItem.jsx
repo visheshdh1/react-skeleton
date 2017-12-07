@@ -4,8 +4,8 @@ var ListItem = React.createClass({
     render: function() {
         return (
             <li>
-              <a href="#" onClick={() => {this.props.remove(text)}}>{this.props.text}</a>
-                
+              <a href="#" onClick={() => {this.props.remove(this.props.text)}}>{this.props.text}</a>
+
             </li>
         );
     }
