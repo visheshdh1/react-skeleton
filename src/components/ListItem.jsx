@@ -1,9 +1,11 @@
 var React = require('react');
+
 var ListItem = React.createClass({
     render: function() {
         return (
             <li>
-                <h4>{this.props.ingredient}</h4>
+              <a href="#" onClick={() => {this.props.remove(text)}}>{this.props.text}</a>
+                
             </li>
         );
     }
